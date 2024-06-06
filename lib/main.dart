@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:solulab1/screens/signup_main.dart';
+import 'package:solulab1/widgets/bgimage.dart';
 import 'screens/onboarding1.dart';
 import 'screens/onboarding2.dart';
 import 'screens/onboarding3.dart';
@@ -14,11 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Scaffold(
-        body: SafeArea(
-          child: OnBoarding2(),
-        ),
-      ),
+      home: const SignupMain(),
       routes: {
         
         '/onboarding2': (context) => const OnBoarding2(),
