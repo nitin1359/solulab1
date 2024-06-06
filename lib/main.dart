@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solulab1/screens/signin.dart';
 import 'package:solulab1/screens/signup_main.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 import 'screens/onboarding1.dart';
@@ -14,13 +15,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const SignupMain(),
       routes: {
-        
         '/onboarding2': (context) => const OnBoarding2(),
-        '/onboarding3': (context) => const OnBoarding3(), 
+        '/onboarding3': (context) => const OnBoarding3(),
+        '/signin': (context) => const Signin(),
+        '/signup_main': (context) => const SignupMain(),
+        '/signup_process': (context) => const SignupMain(),
       },
     );
   }

@@ -25,57 +25,57 @@ class SignupMain extends StatelessWidget {
                     ),
                     const SizedBox(height: 47.15),
                     const Text(
-                      'Login To Your Account',
-                      style:
-                          TextStyle(fontFamily: 'Bentonsans_Bold', fontSize: 20),
+                      'Sign Up For Free ',
+                      style: TextStyle(
+                          fontFamily: 'Bentonsans_Bold', fontSize: 20),
                     ),
                     const SizedBox(height: 40.0),
-                    Container(
-                      height: 57,
-                      width: 325,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 1,
-                        ),
-                      ),
-                      child: const TextField(
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                      child: TextField(
                         style: TextStyle(
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(10.0),
-                          border: InputBorder.none,
-                          labelText: 'Email',
-                          hintText: 'Enter your Email',
+                          contentPadding: EdgeInsets.all(20.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15.0),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: 'madeofzero . . |',
+                          hintStyle: TextStyle(
+                            fontFamily: 'Bentonsans_Regular',
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ),
                     const SizedBox(height: 12.0),
-                    Container(
-                      height: 57,
-                      width: 325,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 1,
-                        ),
-                      ),
-                      child: const TextField(
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                      child: TextField(
                         style: TextStyle(
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(10.0),
-                          border: InputBorder.none,
-                          labelText: 'Password',
-                          hintText: 'Enter your Password',
+                          contentPadding: EdgeInsets.all(20.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15.0),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          hintText: 'Password',
+                          hintStyle: TextStyle(
+                            fontFamily: 'Bentonsans_Regular',
+                            fontSize: 14,
+                          ),
                         ),
                       ),
                     ),
@@ -93,8 +93,19 @@ class SignupMain extends StatelessWidget {
                       children: [
                         ElevatedButton.icon(
                           onPressed: () {},
-                          icon: const Icon(Icons.facebook),
-                          label: const Text('Facebook'),
+                          icon: Image.asset(
+                            'assets/images/facebook-icon.png',
+                            height: 25,
+                            width: 25,
+                          ),
+                          label: const Text(
+                            'Facebook',
+                            style: TextStyle(
+                              fontFamily: 'Bentonsans_Medium',
+                              fontSize: 14,
+                              color: Color(0xFF22242E),
+                            ),
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFFFFFFF),
                             shape: RoundedRectangleBorder(
@@ -106,8 +117,19 @@ class SignupMain extends StatelessWidget {
                         const SizedBox(width: 21.0),
                         ElevatedButton.icon(
                           onPressed: () {},
-                          label: const Text('Google'),
-                          icon: const Icon(Icons.g_mobiledata),
+                          label: const Text(
+                            'Google',
+                            style: TextStyle(
+                              fontFamily: 'Bentonsans_Medium',
+                              fontSize: 14,
+                              color: Color(0xFF22242E),
+                            ),
+                          ),
+                          icon: Image.asset(
+                            'assets/images/google-icon.png',
+                            height: 25,
+                            width: 25,
+                          ),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFFFFFFF),
                             shape: RoundedRectangleBorder(
@@ -140,9 +162,7 @@ class SignupMain extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           fixedSize: const Size(157, 57)),
-                      onPressed: () {
-                        //Navigator.pushNamed(context, '/onboarding3');
-                      },
+                      onPressed: () {},
                       child: const Center(
                         child: Text(
                           'Login',
