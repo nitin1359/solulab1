@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solulab1/widgets/bgimage.dart';
 import 'screens/onboarding1.dart';
 import 'screens/onboarding2.dart';
 import 'screens/onboarding3.dart';
@@ -13,13 +12,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
+      home: const Scaffold(
         body: SafeArea(
           child: OnBoarding2(),
         ),
       ),
+      routes: {
+        
+        '/onboarding2': (context) => const OnBoarding2(),
+        '/onboarding3': (context) => const OnBoarding3(), 
+      },
     );
   }
 }

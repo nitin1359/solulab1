@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:solulab1/widgets/bgimage.dart';
@@ -10,10 +9,10 @@ class OnBoarding2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BgImage(),
+        const BgImage(),
         Column(
           children: [
-            Padding(
+            const Padding(
               padding: EdgeInsets.only(top: 107.0),
               child: Image(
                 image: AssetImage(
@@ -23,8 +22,8 @@ class OnBoarding2 extends StatelessWidget {
                 width: double.infinity,
               ),
             ),
-            SizedBox(height: 48.0),
-            Text(
+            const SizedBox(height: 48.0),
+            const Text(
               'Find your Comfort\nFood here',
               style: TextStyle(
                 fontFamily: 'Bentonsans_Bold',
@@ -32,10 +31,10 @@ class OnBoarding2 extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
+            const SizedBox(
               height: 20.0,
             ),
-            Text(
+            const Text(
               'Here You Can find a chef or dish for every\ntaste and color. Enjoy!',
               style: TextStyle(
                 fontFamily: 'Bentonsans_Book',
@@ -43,18 +42,20 @@ class OnBoarding2 extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 48.0),
+           const  SizedBox(height: 48.0),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF6B50F6),
+                backgroundColor: const Color(0xFF6B50F6),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                fixedSize: Size(157, 57)
+                fixedSize: const Size(157, 57)
                 
               ),
-              onPressed: () {},
-              child: Center(
+              onPressed: () {
+                Navigator.pushNamed(context, '/onboarding3');
+              },
+              child: const Center(
                 child: Text(
                   'Next',
                   style: TextStyle(
