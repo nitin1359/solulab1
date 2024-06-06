@@ -50,7 +50,8 @@ class OnBoarding2 extends StatelessWidget {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0),
                 ),
-                maximumSize: Size(157, 57)
+                fixedSize: Size(157, 57)
+                
               ),
               onPressed: () {},
               child: Center(
