@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:solulab1/widgets/bgimage.dart';
 
 class SignupProcess extends StatelessWidget {
   const SignupProcess({super.key});
