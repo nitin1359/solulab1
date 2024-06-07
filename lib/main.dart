@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solulab1/screens/signin.dart';
 import 'package:solulab1/screens/signup_main.dart';
+import 'package:solulab1/screens/signup_process.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 import 'screens/onboarding1.dart';
 import 'screens/onboarding2.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SignupMain(),
+      home: const SignupProcess(),
       routes: {
         '/onboarding2': (context) => const OnBoarding2(),
         '/onboarding3': (context) => const OnBoarding3(),
