@@ -162,7 +162,9 @@ class SignupMain extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           fixedSize: const Size(175, 57)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signup_process');
+                      },
                       child: const Center(
                         child: Text(
                           'Create Account',
@@ -176,7 +178,9 @@ class SignupMain extends StatelessWidget {
                     ),
                     const SizedBox(height: 14.0),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signin');
+                      },
                       style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFF6B50F6),
                       ),

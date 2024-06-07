@@ -163,7 +163,9 @@ class Signin extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           fixedSize: const Size(157, 57)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/signup_main');
+                      },
                       child: const Center(
                         child: Text(
                           'Login',

@@ -8,11 +8,16 @@ class OnBoarding1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Future.delayed(const Duration(seconds: 3), () {
-        Navigator.pushNamed(context, '/onboarding2');
-      });
-    });
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) {
+        Future.delayed(
+          const Duration(seconds: 3),
+          () {
+            Navigator.pushNamed(context, '/onboarding2');
+          },
+        );
+      },
+    );
     return Scaffold(
       body: SafeArea(
         child: Stack(
