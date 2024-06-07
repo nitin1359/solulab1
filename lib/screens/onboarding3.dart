@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/screens/signin.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
 class OnBoarding3 extends StatelessWidget {
@@ -51,7 +53,13 @@ class OnBoarding3 extends StatelessWidget {
                         ),
                         fixedSize: const Size(157, 57)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/signin');
+                      Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: const Signin(),
+              ),
+            );
                     },
                     child: const Center(
                       child: Text(

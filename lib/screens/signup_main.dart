@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/screens/signin.dart';
+import 'package:solulab1/screens/signup_process.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
 class SignupMain extends StatelessWidget {
@@ -163,7 +166,13 @@ class SignupMain extends StatelessWidget {
                           ),
                           fixedSize: const Size(175, 57)),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/signup_process');
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const SignupProcess(),
+                          ),
+                        );
                       },
                       child: const Center(
                         child: Text(
@@ -179,7 +188,13 @@ class SignupMain extends StatelessWidget {
                     const SizedBox(height: 14.0),
                     TextButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/signin');
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const Signin(),
+                          ),
+                        );
                       },
                       style: TextButton.styleFrom(
                         foregroundColor: const Color(0xFF6B50F6),

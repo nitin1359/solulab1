@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/screens/onboarding3.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
 class OnBoarding2 extends StatelessWidget {
@@ -53,7 +55,13 @@ class OnBoarding2 extends StatelessWidget {
                         ),
                         fixedSize: const Size(157, 57)),
                     onPressed: () {
-                      Navigator.pushNamed(context, '/onboarding3');
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          child: const OnBoarding3(),
+                        ),
+                      );
                     },
                     child: const Center(
                       child: Text(

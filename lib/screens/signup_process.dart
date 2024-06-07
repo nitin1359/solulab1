@@ -131,9 +131,7 @@ class SignupProcess extends StatelessWidget {
                             ),
                             fixedSize: const Size(157, 57),
                           ),
-                          onPressed: () {
-                            // Add your button functionality here
-                          },
+                          onPressed: () {},
                           child: const Text(
                             'Next',
                             style: TextStyle(

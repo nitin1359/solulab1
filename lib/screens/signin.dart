@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/screens/signup_main.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
 class Signin extends StatelessWidget {
@@ -164,8 +166,13 @@ class Signin extends StatelessWidget {
                           ),
                           fixedSize: const Size(157, 57)),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/signup_main');
-                      },
+Navigator.push(
+              context,
+              PageTransition(
+                type: PageTransitionType.rightToLeft,
+                child: const SignupMain(),
+              ),
+            );                      },
                       child: const Center(
                         child: Text(
                           'Login',
