@@ -29,25 +29,26 @@ class SignupMain extends StatelessWidget {
                       style: TextStyle(
                           fontFamily: 'Bentonsans_Bold', fontSize: 20),
                     ),
-                    const SizedBox(height: 40.0),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                    const SizedBox(height: 46.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
                           filled: true,
                           fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(20.0),
-                          border: OutlineInputBorder(
+                          prefixIcon: Image.asset('assets/images/Profile.png'),
+                          contentPadding: const EdgeInsets.all(20.0),
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15.0),
                             ),
                             borderSide: BorderSide.none,
                           ),
                           hintText: 'madeofzero . . |',
-                          hintStyle: TextStyle(
+                          hintStyle: const TextStyle(
                             fontFamily: 'Bentonsans_Regular',
                             fontSize: 14,
                           ),
@@ -55,117 +56,116 @@ class SignupMain extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12.0),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 25.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
+                          prefixIcon: Image.asset('assets/images/Email.png'),
                           filled: true,
                           fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(20.0),
-                          border: OutlineInputBorder(
+                          contentPadding: const EdgeInsets.all(20.0),
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(15.0),
                             ),
                             borderSide: BorderSide.none,
                           ),
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(
                             fontFamily: 'Bentonsans_Regular',
                             fontSize: 14,
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(height: 20.0),
-                    const Text(
-                      'Or Continue With',
-                      style: TextStyle(
-                        fontFamily: 'Bentonsans_Bold',
-                        fontSize: 12,
-                      ),
-                    ),
-                    const SizedBox(height: 20.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Image.asset(
-                            'assets/images/facebook-icon.png',
-                            height: 25,
-                            width: 25,
-                          ),
-                          label: const Text(
-                            'Facebook',
-                            style: TextStyle(
-                              fontFamily: 'Bentonsans_Medium',
-                              fontSize: 14,
-                              color: Color(0xFF22242E),
+                    const SizedBox(height: 12.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: TextField(
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
+                        decoration: InputDecoration(
+                          prefixIcon: Image.asset('assets/images/Lock.png'),
+                          suffixIcon: Image.asset('assets/images/Show.png'),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.all(20.0),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(15.0),
                             ),
+                            borderSide: BorderSide.none,
                           ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFFFFFF),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            fixedSize: const Size(152, 57),
+                          hintText: 'Password',
+                          hintStyle: const TextStyle(
+                            fontFamily: 'Bentonsans_Regular',
+                            fontSize: 14,
                           ),
                         ),
-                        const SizedBox(width: 21.0),
-                        ElevatedButton.icon(
-                          onPressed: () {},
-                          label: const Text(
-                            'Google',
-                            style: TextStyle(
-                              fontFamily: 'Bentonsans_Medium',
-                              fontSize: 14,
-                              color: Color(0xFF22242E),
-                            ),
-                          ),
-                          icon: Image.asset(
-                            'assets/images/google-icon.png',
-                            height: 25,
-                            width: 25,
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFFFFFFF),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            fixedSize: const Size(152, 57),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20.0),
-                    TextButton(
-                      onPressed: () {},
-                      style: TextButton.styleFrom(
-                        foregroundColor: const Color(0xFF6B50F6),
-                      ),
-                      child: const Text(
-                        'Forgot Your Password?',
-                        style: TextStyle(
-                            fontFamily: 'Bentonsans_Medium',
-                            fontSize: 12,
-                            decoration: TextDecoration.underline),
                       ),
                     ),
-                    const SizedBox(height: 36.0),
+                    const SizedBox(height: 19.0),
+                    const Padding(
+                      padding: EdgeInsets.only(
+                        left: 25.0,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.check_circle,
+                                color: Color(0xff6B50F6),
+                              ),
+                              SizedBox(width: 8.0),
+                              Text(
+                                'Keep Me Signed In',
+                                style: TextStyle(
+                                  fontFamily: 'Bentonsans_Book',
+                                  fontSize: 12,
+                                  color: Color(0xFF22242E),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 12.0),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.check_circle,
+                                color: Color(0xff6B50F6),
+                              ),
+                              SizedBox(width: 8.0),
+                              Text(
+                                'Email Me About Special Pricing',
+                                style: TextStyle(
+                                  fontFamily: 'Bentonsans_Book',
+                                  fontSize: 12,
+                                  color: Color(0xFF22242E),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 43.0),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: const Color(0xFF6B50F6),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15.0),
                           ),
-                          fixedSize: const Size(157, 57)),
+                          fixedSize: const Size(175, 57)),
                       onPressed: () {},
                       child: const Center(
                         child: Text(
-                          'Login',
+                          'Create Account',
                           style: TextStyle(
                             fontFamily: 'BentonSans_Bold',
                             fontSize: 16,
@@ -174,6 +174,21 @@ class SignupMain extends StatelessWidget {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 14.0),
+                    TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        foregroundColor: const Color(0xFF6B50F6),
+                      ),
+                      child: const Text(
+                        'already have an account?',
+                        style: TextStyle(
+                            fontFamily: 'Bentonsans_Medium',
+                            fontSize: 12,
+                            decoration: TextDecoration.underline),
+                      ),
+                    ),
+                    const SizedBox(height: 36.0),
                   ],
                 ),
               ),
