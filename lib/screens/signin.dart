@@ -7,21 +7,27 @@ class Signin extends StatefulWidget {
 
   @override
   State<Signin> createState() => _SigninState();
-} 
+}
 
 class _SigninState extends State<Signin> {
-  
   String? errorMessage = '';
   bool isLogin = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+  void navigateToHomeScreen() {
+    if (mounted) {
+      Navigator.pushReplacementNamed(context, '/home');
+    }
+  }
+
   signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
-        password: passwordController.text.trim(), 
+        password: passwordController.text.trim(),
       );
+      navigateToHomeScreen();
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;

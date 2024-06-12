@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:solulab1/screens/signin.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -10,6 +12,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final user = FirebaseAuth.instance.currentUser;
+
+  Future<void> signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      if (mounted) {
+        // Check if the widget is still in the widget tree
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const Signin(),
+          ),
+        ); // Go back to root route
+      }
+    } catch (e) {
+      print("Sign out error: $e");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              '${user!.email}',
-              style: TextStyle(fontSize: 30),
-            ),
+            if (user != null) // Display user email if available
+              Text(
+                '${user!.email}',
+                style: TextStyle(fontSize: 30),
+              ),
             ElevatedButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                },
+                onPressed: signOut, // Call signOut function
                 child: Text(
                   'Signout Button',
                   style: TextStyle(fontSize: 20),
