@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "964813443124",
+    "project_id": "solulabauth-69cb8",
+    "storage_bucket": "solulabauth-69cb8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964813443124:android:60b4dfb8e8378646ef3a61",
+        "android_client_info": {
+          "package_name": "com.example.solulab1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8nkqf3i2PJlN0hE9Bz6s898HjsOHV_HI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

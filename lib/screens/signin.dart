@@ -1,10 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/screens/signup_main.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
-class Signin extends StatelessWidget {
+class Signin extends StatefulWidget {
   const Signin({super.key});
+
+  @override
+  State<Signin> createState() => _SigninState();
+} 
+
+class _SigninState extends State<Signin> {
+  
+  String? errorMessage = '';
+  bool isLogin = true;
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  signIn() async {
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(), 
+      );
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +55,10 @@ class Signin extends StatelessWidget {
                           fontFamily: 'Bentonsans_Bold', fontSize: 20),
                     ),
                     const SizedBox(height: 40.0),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
+                        controller: emailController,
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -57,9 +81,10 @@ class Signin extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12.0),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
+                        controller: passwordController,
                         style: TextStyle(
                           color: Colors.black,
                         ),
@@ -132,7 +157,6 @@ class Signin extends StatelessWidget {
                             height: 25,
                             width: 25,
                           ),
-                          
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFFFFFFFF),
                             shape: RoundedRectangleBorder(
@@ -165,14 +189,7 @@ class Signin extends StatelessWidget {
                             borderRadius: BorderRadius.circular(15.0),
                           ),
                           fixedSize: const Size(157, 57)),
-                      onPressed: () {
-Navigator.push(
-              context,
-              PageTransition(
-                type: PageTransitionType.rightToLeft,
-                child: const SignupMain(),
-              ),
-            );                      },
+                      onPressed: (() => signIn()),
                       child: const Center(
                         child: Text(
                           'Login',

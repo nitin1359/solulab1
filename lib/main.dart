@@ -1,13 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'screens/onboarding1.dart';
+import 'package:solulab1/firebase_options.dart';
+import 'package:solulab1/wrapper.dart';
 
-// import 'package:solulab1/screens/signin.dart';
-// import 'package:solulab1/screens/signup_main.dart';
-// import 'package:solulab1/screens/signup_process.dart';
-// import 'screens/onboarding2.dart';
-// import 'screens/onboarding3.dart';
-
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized(); 
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const MyApp());
 }
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const OnBoarding1(),
+      home: const Wrapper(),
       // routes: {
       //   '/onboarding2': (context) => const OnBoarding2(),
       //   '/onboarding3': (context) => const OnBoarding3(),
