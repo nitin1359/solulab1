@@ -34,16 +34,17 @@ class _SignupMainState extends State<SignupMain> {
       await userCredential.user!
           .updateDisplayName(userIdController.text.trim());
 
-      Navigator.push(
-        context,
-        PageTransition(
-          type: PageTransitionType.rightToLeft,
-          child: const HomeScreen(),
-        ),
-        
-      );
-      
-       await saveLoginState(true);
+      if (mounted) {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: const HomeScreen(),
+          ),
+        );
+
+        await saveLoginState(true);
+      }
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -131,7 +132,7 @@ class _SignupMainState extends State<SignupMain> {
                       ),
                     ),
                     const SizedBox(height: 12.0),
-                  Padding(
+                    Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
                         controller: passwordController,
@@ -150,7 +151,7 @@ class _SignupMainState extends State<SignupMain> {
                             child: Icon(
                               _obscurePassword
                                   ? Icons.visibility
-                                  : Icons.visibility_off, 
+                                  : Icons.visibility_off,
                             ),
                           ),
                           filled: true,

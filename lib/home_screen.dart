@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:solulab1/screens/signin.dart';
@@ -30,7 +28,14 @@ class _HomeScreenState extends State<HomeScreen> {
       await saveLoginState(false);
      
     } catch (e) {
-      print("Sign out error: $e");
+       if (mounted) { 
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Sign out failed. Please try again later.'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
     }
   }
 
