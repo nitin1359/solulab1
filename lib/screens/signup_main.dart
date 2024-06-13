@@ -1,11 +1,55 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/home_screen.dart';
 import 'package:solulab1/screens/signin.dart';
-import 'package:solulab1/screens/signup_process.dart';
 import 'package:solulab1/widgets/bgimage.dart';
+import 'package:solulab1/wrapper.dart';
 
-class SignupMain extends StatelessWidget {
+class SignupMain extends StatefulWidget {
   const SignupMain({super.key});
+
+  @override
+  State<SignupMain> createState() => _SignupMainState();
+}
+
+class _SignupMainState extends State<SignupMain> {
+  final userIdController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  String? errorMessage = '';
+  bool _obscurePassword = true;
+  bool keepSignedIn = false;
+  bool emailSpecialPricing = false;
+
+  Future<void> createUserWithEmailAndPassword() async {
+    try {
+      // Create user with email and password
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim(),
+      );
+
+      await userCredential.user!
+          .updateDisplayName(userIdController.text.trim());
+
+      Navigator.push(
+        context,
+        PageTransition(
+          type: PageTransitionType.rightToLeft,
+          child: const HomeScreen(),
+        ),
+        
+      );
+      
+       await saveLoginState(true);
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        errorMessage = e.message;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +80,7 @@ class SignupMain extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
+                        controller: userIdController,
                         style: const TextStyle(
                           color: Colors.black,
                         ),
@@ -62,6 +107,7 @@ class SignupMain extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
+                        controller: emailController,
                         style: const TextStyle(
                           color: Colors.black,
                         ),
@@ -85,15 +131,28 @@ class SignupMain extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 12.0),
-                    Padding(
+                  Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
+                        controller: passwordController,
+                        obscureText: _obscurePassword,
                         style: const TextStyle(
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
                           prefixIcon: Image.asset('assets/images/Lock.png'),
-                          suffixIcon: Image.asset('assets/images/Show.png'),
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                            child: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility
+                                  : Icons.visibility_off, 
+                            ),
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                           contentPadding: const EdgeInsets.all(20.0),
@@ -112,47 +171,65 @@ class SignupMain extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 19.0),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(
                         left: 25.0,
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.check_circle,
-                                color: Color(0xff6B50F6),
-                              ),
-                              SizedBox(width: 8.0),
-                              Text(
-                                'Keep Me Signed In',
-                                style: TextStyle(
-                                  fontFamily: 'Bentonsans_Book',
-                                  fontSize: 12,
-                                  color: Color(0xFF22242E),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                keepSignedIn = !keepSignedIn;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  keepSignedIn
+                                      ? Icons.check_circle
+                                      : Icons.circle_outlined,
+                                  color: const Color(0xff6B50F6),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 8.0),
+                                const Text(
+                                  'Keep Me Signed In',
+                                  style: TextStyle(
+                                    fontFamily: 'Bentonsans_Book',
+                                    fontSize: 12,
+                                    color: Color(0xFF22242E),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          SizedBox(height: 12.0),
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.check_circle,
-                                color: Color(0xff6B50F6),
-                              ),
-                              SizedBox(width: 8.0),
-                              Text(
-                                'Email Me About Special Pricing',
-                                style: TextStyle(
-                                  fontFamily: 'Bentonsans_Book',
-                                  fontSize: 12,
-                                  color: Color(0xFF22242E),
+                          const SizedBox(height: 12.0),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                emailSpecialPricing = !emailSpecialPricing;
+                              });
+                            },
+                            child: Row(
+                              children: [
+                                Icon(
+                                  emailSpecialPricing
+                                      ? Icons.check_circle
+                                      : Icons.circle_outlined,
+                                  color: const Color(0xff6B50F6),
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 8.0),
+                                const Text(
+                                  'Email Me About Special Pricing',
+                                  style: TextStyle(
+                                    fontFamily: 'Bentonsans_Book',
+                                    fontSize: 12,
+                                    color: Color(0xFF22242E),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -166,13 +243,7 @@ class SignupMain extends StatelessWidget {
                           ),
                           fixedSize: const Size(175, 57)),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          PageTransition(
-                            type: PageTransitionType.rightToLeft,
-                            child: const SignupProcess(),
-                          ),
-                        );
+                        createUserWithEmailAndPassword();
                       },
                       child: const Center(
                         child: Text(

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:solulab1/widgets/bgimage.dart';
+import 'package:solulab1/wrapper.dart';
 
 class Signin extends StatefulWidget {
   const Signin({super.key});
@@ -14,6 +15,7 @@ class _SigninState extends State<Signin> {
   bool isLogin = true;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  bool _obscurePassword = true;
 
   void navigateToHomeScreen() {
     if (mounted) {
@@ -28,6 +30,7 @@ class _SigninState extends State<Signin> {
         password: passwordController.text.trim(),
       );
       navigateToHomeScreen();
+       await saveLoginState(true);
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -91,10 +94,23 @@ class _SigninState extends State<Signin> {
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
                       child: TextField(
                         controller: passwordController,
+                        obscureText: _obscurePassword,
                         style: TextStyle(
                           color: Colors.black,
                         ),
                         decoration: InputDecoration(
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
+                            child: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility
+                                  : Icons.visibility_off, 
+                            ),
+                          ),
                           filled: true,
                           fillColor: Colors.white,
                           contentPadding: EdgeInsets.all(20.0),

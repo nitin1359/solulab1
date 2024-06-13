@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/screens/signin.dart';
+import 'package:solulab1/screens/signup_main.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
 class OnBoarding3 extends StatelessWidget {
@@ -57,7 +57,7 @@ class OnBoarding3 extends StatelessWidget {
               context,
               PageTransition(
                 type: PageTransitionType.rightToLeft,
-                child: const Signin(),
+                child: const SignupMain(),
               ),
             );
                     },
