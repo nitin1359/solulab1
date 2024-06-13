@@ -1,5 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/screens/signup_main.dart';
+import 'package:solulab1/app_text_field.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 import 'package:solulab1/wrapper.dart';
 
@@ -23,6 +26,19 @@ class _SigninState extends State<Signin> {
     }
   }
 
+  GestureDetector eyeToggle() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _obscurePassword = !_obscurePassword;
+        });
+      },
+      child: Icon(
+        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+      ),
+    );
+  }
+
   signIn() async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -30,7 +46,7 @@ class _SigninState extends State<Signin> {
         password: passwordController.text.trim(),
       );
       navigateToHomeScreen();
-       await saveLoginState(true);
+      await saveLoginState(true);
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e.message;
@@ -66,66 +82,17 @@ class _SigninState extends State<Signin> {
                     const SizedBox(height: 40.0),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
-                      child: TextField(
-                        controller: emailController,
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(20.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15.0),
-                            ),
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: 'Email',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Bentonsans_Regular',
-                            fontSize: 14,
-                          ),
-                        ),
-                      ),
+                      child: AppTextField(
+                          controller: emailController, hintText: 'Email'),
                     ),
                     const SizedBox(height: 12.0),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 25.0),
-                      child: TextField(
+                      child: AppTextField(
                         controller: passwordController,
                         obscureText: _obscurePassword,
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _obscurePassword = !_obscurePassword;
-                              });
-                            },
-                            child: Icon(
-                              _obscurePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off, 
-                            ),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: EdgeInsets.all(20.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15.0),
-                            ),
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: 'Password',
-                          hintStyle: TextStyle(
-                            fontFamily: 'Bentonsans_Regular',
-                            fontSize: 14,
-                          ),
-                        ),
+                        hintText: 'Password',
+                        suffixIcon: eyeToggle(),
                       ),
                     ),
                     const SizedBox(height: 20.0),
@@ -221,6 +188,28 @@ class _SigninState extends State<Signin> {
                             color: Colors.white,
                           ),
                         ),
+                      ),
+                    ),
+                    const SizedBox(height: 14.0),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const SignupMain(),
+                          ),
+                        );
+                      },
+                      style: TextButton.styleFrom(
+                        foregroundColor: const Color(0xFF6B50F6),
+                      ),
+                      child: const Text(
+                        'Don\'t have an account?',
+                        style: TextStyle(
+                            fontFamily: 'Bentonsans_Medium',
+                            fontSize: 12,
+                            decoration: TextDecoration.underline),
                       ),
                     ),
                   ],

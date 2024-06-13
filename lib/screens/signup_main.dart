@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:solulab1/home_screen.dart';
 import 'package:solulab1/screens/signin.dart';
+import 'package:solulab1/app_text_field.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 import 'package:solulab1/wrapper.dart';
 
@@ -21,6 +22,19 @@ class _SignupMainState extends State<SignupMain> {
   bool _obscurePassword = true;
   bool keepSignedIn = false;
   bool emailSpecialPricing = false;
+
+  GestureDetector eyeToggle() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _obscurePassword = !_obscurePassword;
+        });
+      },
+      child: Icon(
+        _obscurePassword ? Icons.visibility : Icons.visibility_off,
+      ),
+    );
+  }
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
@@ -80,95 +94,30 @@ class _SignupMainState extends State<SignupMain> {
                     const SizedBox(height: 46.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: TextField(
+                      child: AppTextField(
                         controller: userIdController,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          prefixIcon: Image.asset('assets/images/Profile.png'),
-                          contentPadding: const EdgeInsets.all(20.0),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15.0),
-                            ),
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: 'madeofzero . . |',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'Bentonsans_Regular',
-                            fontSize: 14,
-                          ),
-                        ),
+                        hintText: 'madeofzero . . |',
+                        prefixIcon: Image.asset('assets/images/Profile.png'),
                       ),
                     ),
                     const SizedBox(height: 12.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: TextField(
+                      child: AppTextField(
                         controller: emailController,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          prefixIcon: Image.asset('assets/images/Email.png'),
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.all(20.0),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15.0),
-                            ),
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: 'Email',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'Bentonsans_Regular',
-                            fontSize: 14,
-                          ),
-                        ),
+                        hintText: 'Email',
+                        prefixIcon: Image.asset('assets/images/Email.png'),
                       ),
                     ),
                     const SizedBox(height: 12.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                      child: TextField(
+                      child: AppTextField(
                         controller: passwordController,
                         obscureText: _obscurePassword,
-                        style: const TextStyle(
-                          color: Colors.black,
-                        ),
-                        decoration: InputDecoration(
-                          prefixIcon: Image.asset('assets/images/Lock.png'),
-                          suffixIcon: GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                _obscurePassword = !_obscurePassword;
-                              });
-                            },
-                            child: Icon(
-                              _obscurePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                          contentPadding: const EdgeInsets.all(20.0),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(15.0),
-                            ),
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: 'Password',
-                          hintStyle: const TextStyle(
-                            fontFamily: 'Bentonsans_Regular',
-                            fontSize: 14,
-                          ),
-                        ),
+                        prefixIcon: Image.asset('assets/images/Lock.png'),
+                        hintText: 'Password',
+                        suffixIcon: eyeToggle(),
                       ),
                     ),
                     const SizedBox(height: 19.0),
