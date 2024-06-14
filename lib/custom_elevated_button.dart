@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:page_transition/page_transition.dart';
-import 'main.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton(
-      {super.key, required this.buttonText, required this.routeName});
+      {super.key, required this.buttonText, required this.onPressed,});
 
   final String buttonText;
-  final String routeName;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -18,15 +16,7 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         fixedSize: const Size(175, 57),
       ),
-      onPressed: () {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft, 
-            child: routes[routeName]!(context), // Fixed route
-          ),
-        );
-      },
+      onPressed: onPressed,
       child: Center(
         child: Text(
           buttonText,

@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/app_text_field.dart';
+import 'package:solulab1/custom_elevated_button.dart';
+import 'package:solulab1/screens/signup_main.dart';
 
 class SignupProcess extends StatelessWidget {
-  const SignupProcess({super.key});
+  SignupProcess({super.key});
+
+  final fnameController = TextEditingController();
+  final lnameController = TextEditingController();
+  final mobileNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +30,13 @@ class SignupProcess extends StatelessWidget {
                         const SizedBox(height: 20.0),
                         IconButton(
                           onPressed: () {
-                            Navigator.pop(context);
+                            Navigator.push(
+                              context,
+                              PageTransition(
+                                type: PageTransitionType.rightToLeft,
+                                child: const SignupMain(),
+                              ),
+                            );
                           },
                           icon: Image.asset(
                             'assets/images/Icon Back.png',
@@ -56,89 +70,20 @@ class SignupProcess extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 14.0),
                     child: Column(
                       children: [
-                        TextField(
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: EdgeInsets.all(20.0),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15.0),
-                              ),
-                              borderSide: BorderSide.none,
-                            ),
-                            hintText: 'First Name',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Bentonsans_Regular',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
+                        AppTextField(
+                            controller: fnameController,
+                            hintText: 'First Name'),
                         const SizedBox(height: 20.0),
-                        TextField(
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: EdgeInsets.all(20.0),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15.0),
-                              ),
-                              borderSide: BorderSide.none,
-                            ),
-                            hintText: 'Last Name',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Bentonsans_Regular',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
+                        AppTextField(
+                            controller: lnameController, hintText: 'Last Name'),
                         const SizedBox(height: 20.0),
-                        TextField(
-                          style: const TextStyle(
-                            color: Colors.black,
-                          ),
-                          decoration: const InputDecoration(
-                            filled: true,
-                            fillColor: Colors.white,
-                            contentPadding: EdgeInsets.all(20.0),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(15.0),
-                              ),
-                              borderSide: BorderSide.none,
-                            ),
-                            hintText: 'Mobile Number',
-                            hintStyle: TextStyle(
-                              fontFamily: 'Bentonsans_Regular',
-                              fontSize: 14,
-                            ),
-                          ),
-                        ),
+                        AppTextField(
+                            controller: mobileNumberController,
+                            hintText: 'Mobile Number'),
                         const SizedBox(height: 220.0),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF6B50F6),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15.0),
-                            ),
-                            fixedSize: const Size(157, 57),
-                          ),
+                        CustomElevatedButton(
+                          buttonText: 'Next',
                           onPressed: () {},
-                          child: const Text(
-                            'Next',
-                            style: TextStyle(
-                              fontFamily: 'BentonSans_Bold',
-                              fontSize: 16,
-                              color: Colors.white,
-                            ),
-                          ),
                         ),
                       ],
                     ),

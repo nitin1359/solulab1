@@ -24,13 +24,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const Wrapper(),
+      home:  Wrapper(),
       routes: {
           '/onboarding2': (context) => const OnBoarding2(),
           '/onboarding3': (context) => const OnBoarding3(),
           '/signin': (context) => const Signin(),
           '/signup_main': (context) => const SignupMain(),
-          '/signup_process': (context) => const SignupProcess(),
+          '/signup_process': (context) =>  SignupProcess(),
         '/home': (context) => const HomeScreen(),
       },
     );

@@ -1,6 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/custom_elevated_button.dart';
+import 'package:solulab1/firebase/firebase_auth.dart';
+import 'package:solulab1/home_screen.dart';
 import 'package:solulab1/screens/signup_main.dart';
 import 'package:solulab1/app_text_field.dart';
 import 'package:solulab1/widgets/bgimage.dart';
@@ -19,12 +22,6 @@ class _SigninState extends State<Signin> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   bool _obscurePassword = true;
-
-  void navigateToHomeScreen() {
-    if (mounted) {
-      Navigator.pushReplacementNamed(context, '/home');
-    }
-  }
 
   GestureDetector eyeToggle() {
     return GestureDetector(
@@ -45,7 +42,16 @@ class _SigninState extends State<Signin> {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      navigateToHomeScreen();
+      if (mounted) {
+        // Navigator.pushReplacementNamed(context, '/home');
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: const HomeScreen(),
+          ),
+        );
+      }
       await saveLoginState(true);
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -132,7 +138,9 @@ class _SigninState extends State<Signin> {
                         ),
                         const SizedBox(width: 21.0),
                         ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            AuthMethods().signInWithGoogle(context);
+                          },
                           label: const Text(
                             'Google',
                             style: TextStyle(
@@ -171,25 +179,27 @@ class _SigninState extends State<Signin> {
                       ),
                     ),
                     const SizedBox(height: 36.0),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6B50F6),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          fixedSize: const Size(157, 57)),
-                      onPressed: (() => signIn()),
-                      child: const Center(
-                        child: Text(
-                          'Login',
-                          style: TextStyle(
-                            fontFamily: 'BentonSans_Bold',
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                    CustomElevatedButton(
+                        buttonText: 'Login', onPressed: signIn),
+                    // ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //       backgroundColor: const Color(0xFF6B50F6),
+                    //       shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(15.0),
+                    //       ),
+                    //       fixedSize: const Size(157, 57)),
+                    //   onPressed: (() => signIn()),
+                    //   child: const Center(
+                    //     child: Text(
+                    //       'Login',
+                    //       style: TextStyle(
+                    //         fontFamily: 'BentonSans_Bold',
+                    //         fontSize: 16,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(height: 14.0),
                     TextButton(
                       onPressed: () {

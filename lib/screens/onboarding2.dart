@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/custom_elevated_button.dart';
 import 'package:solulab1/screens/onboarding3.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
@@ -47,13 +48,8 @@ class OnBoarding2 extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 48.0),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF6B50F6),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        fixedSize: const Size(157, 57)),
+                  CustomElevatedButton(
+                    buttonText: 'Next',
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -63,16 +59,6 @@ class OnBoarding2 extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Center(
-                      child: Text(
-                        'Next',
-                        style: TextStyle(
-                          fontFamily: 'BentonSans_Bold',
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),

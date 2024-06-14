@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:solulab1/custom_elevated_button.dart';
 import 'package:solulab1/home_screen.dart';
 import 'package:solulab1/screens/signin.dart';
 import 'package:solulab1/app_text_field.dart';
@@ -185,27 +186,30 @@ class _SignupMainState extends State<SignupMain> {
                       ),
                     ),
                     const SizedBox(height: 43.0),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: const Color(0xFF6B50F6),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                          fixedSize: const Size(175, 57)),
-                      onPressed: () {
+                    CustomElevatedButton(buttonText: 'Create Account', onPressed: () {
                         createUserWithEmailAndPassword();
-                      },
-                      child: const Center(
-                        child: Text(
-                          'Create Account',
-                          style: TextStyle(
-                            fontFamily: 'BentonSans_Bold',
-                            fontSize: 16,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                      },),
+                    // ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //       backgroundColor: const Color(0xFF6B50F6),
+                    //       shape: RoundedRectangleBorder(
+                    //         borderRadius: BorderRadius.circular(15.0),
+                    //       ),
+                    //       fixedSize: const Size(175, 57)),
+                    //   onPressed: () {
+                    //     createUserWithEmailAndPassword();
+                    //   },
+                    //   child: const Center(
+                    //     child: Text(
+                    //       'Create Account',
+                    //       style: TextStyle(
+                    //         fontFamily: 'BentonSans_Bold',
+                    //         fontSize: 16,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     const SizedBox(height: 14.0),
                     TextButton(
                       onPressed: () {
