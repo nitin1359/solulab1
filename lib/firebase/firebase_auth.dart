@@ -9,7 +9,7 @@ class AuthMethods {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   getCurrentUser() async {
-    return await auth.currentUser;
+    return auth.currentUser;
   }
 
   signInWithGoogle(BuildContext context) async {
@@ -36,9 +36,7 @@ class AuthMethods {
       "imgUrl": userDetails.photoURL,
       "id": userDetails.uid
     };
-    await DatabaseMethods()
-        .addUser(userDetails.uid, userInfoMap)
-        .then((value) {
+    await DatabaseMethods().addUser(userDetails.uid, userInfoMap).then((value) {
       Navigator.push(
         context,
         PageTransition(
@@ -47,7 +45,7 @@ class AuthMethods {
         ),
       );
     });
-    }
+  }
 }
 
 class DatabaseMethods {
