@@ -36,28 +36,42 @@ class _SigninState extends State<Signin> {
     );
   }
 
-  signIn() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
+  void signIn() async {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        )
+        .then((userCredential) async {
       if (mounted) {
-        // Navigator.pushReplacementNamed(context, '/home');
-        Navigator.push(
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Login Successful")),
+        );
+        Navigator.pushReplacement(
           context,
           PageTransition(
             type: PageTransitionType.rightToLeft,
-            child: const HomeScreen(),
+            child: HomeScreen(),
           ),
         );
       }
       await saveLoginState(true);
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
+    }).catchError((e) {
+      if (e is FirebaseAuthException) {
+        setState(() {
+          errorMessage = e.message;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              e.message ?? "An error occurred",
+              style: TextStyle(color: Colors.white),
+            ),
+            backgroundColor: Colors.red.shade400,
+          ),
+        );
+      }
+    },);
   }
 
   @override
