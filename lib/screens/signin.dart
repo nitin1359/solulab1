@@ -141,7 +141,7 @@ class _SigninState extends State<Signin> {
                           onPressed: () {
                             AuthMethods().signInWithGoogle(context);
                           },
-                          label: const Text(
+                          label: const Text( 
                             'Google',
                             style: TextStyle(
                               fontFamily: 'Bentonsans_Medium',

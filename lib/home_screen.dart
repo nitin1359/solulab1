@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:solulab1/screens/signin.dart';
 import 'package:solulab1/wrapper.dart';
 
@@ -15,6 +16,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   signOut() async {
     try {
+      await GoogleSignIn().signOut(); /*this line is used to signout 
+      from google account as well, cause without this, next time when 
+      someone click on it, it will direct log them using previously selected google id */
+      
       await FirebaseAuth.instance.signOut();
       if (mounted) {
         // Check if the widget is still in the widget tree

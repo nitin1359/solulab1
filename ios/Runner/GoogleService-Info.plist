@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>964813443124-visnt6dglv9u0bed243ncr7ueg726r96.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.964813443124-visnt6dglv9u0bed243ncr7ueg726r96</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>964813443124-5dtsu54g429kq9h3kvasc3bsed0cdii4.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCDI8_oqtgz8-LUQ-xIJXkjHV9OTlJYjPU</string>
 	<key>GCM_SENDER_ID</key>
@@ -9,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.solulab1</string>
+	<string>com</string>
 	<key>PROJECT_ID</key>
 	<string>solulabauth-69cb8</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:964813443124:ios:7e647c21b6ae0873ef3a61</string>
+	<string>1:964813443124:ios:ea832db987fe5be4ef3a61</string>
 </dict>
 </plist>

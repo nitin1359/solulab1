@@ -12,7 +12,20 @@
           "package_name": "com.example.solulab1"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "964813443124-5dtsu54g429kq9h3kvasc3bsed0cdii4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.solulab1",
+            "certificate_hash": "cc42caf852e89e83ffa81d871a47ea7b6bd44db8"
+          }
+        },
+        {
+          "client_id": "964813443124-tkb32gobn780umi0f2ojrbltp6ifaocd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC8nkqf3i2PJlN0hE9Bz6s898HjsOHV_HI"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964813443124-tkb32gobn780umi0f2ojrbltp6ifaocd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "964813443124-1rrh5vehrqgtt3uq5picqsrftqllrrak.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.solulab1"
+              }
+            }
+          ]
         }
       }
     }

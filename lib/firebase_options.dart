@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '964813443124',
     projectId: 'solulabauth-69cb8',
     storageBucket: 'solulabauth-69cb8.appspot.com',
+    androidClientId: '964813443124-5dtsu54g429kq9h3kvasc3bsed0cdii4.apps.googleusercontent.com',
+    iosClientId: '964813443124-1rrh5vehrqgtt3uq5picqsrftqllrrak.apps.googleusercontent.com',
     iosBundleId: 'com.example.solulab1',
   );
 
@@ -72,6 +74,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '964813443124',
     projectId: 'solulabauth-69cb8',
     storageBucket: 'solulabauth-69cb8.appspot.com',
+    androidClientId: '964813443124-5dtsu54g429kq9h3kvasc3bsed0cdii4.apps.googleusercontent.com',
+    iosClientId: '964813443124-1rrh5vehrqgtt3uq5picqsrftqllrrak.apps.googleusercontent.com',
     iosBundleId: 'com.example.solulab1',
   );
 
@@ -83,4 +87,5 @@ class DefaultFirebaseOptions {
     authDomain: 'solulabauth-69cb8.firebaseapp.com',
     storageBucket: 'solulabauth-69cb8.appspot.com',
   );
+
 }
