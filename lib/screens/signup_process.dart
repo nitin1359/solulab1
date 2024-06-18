@@ -1,15 +1,83 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/app_text_field.dart';
-import 'package:solulab1/custom_elevated_button.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:solulab1/utils/app_text_field.dart';
+import 'package:solulab1/utils/custom_elevated_button.dart';
+import 'package:solulab1/screens/home_screen.dart';
 import 'package:solulab1/screens/signup_main.dart';
+import 'package:solulab1/wrapper.dart';
 
 class SignupProcess extends StatelessWidget {
-  SignupProcess({super.key});
+  final String email;
+  final String password;
+  final String userId;
+
+  SignupProcess({
+    required this.userId,
+    required this.email,
+    required this.password,
+    super.key,
+  });
 
   final fnameController = TextEditingController();
   final lnameController = TextEditingController();
   final mobileNumberController = TextEditingController();
+
+  Future<void> signUp(BuildContext context) async {
+    try {
+      // Create user with email and password
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      User? user = userCredential.user;
+
+      if (user != null) {
+        // Retrieve FCM token
+        String? fcmToken = await FirebaseMessaging.instance.getToken();
+
+        // Save additional user data to Firestore
+        await FirebaseFirestore.instance.collection('User').doc(user.uid).set(
+          {
+            'userId': userId,
+            'firstName': fnameController.text.trim(),
+            'lastName': lnameController.text.trim(),
+            'mobileNumber': mobileNumberController.text.trim(),
+            'email': email,
+            'fcmToken': fcmToken,
+          },
+        );
+        await saveLoginState(true);
+
+        // Navigate to home screen
+        if (context.mounted) {
+          Navigator.pushReplacement(
+            context,
+            PageTransition(
+              type: PageTransitionType.rightToLeft,
+              child: HomeScreen(),
+            ),
+          );
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            e.message ?? "An error occurred",
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red.shade400,
+        ),
+      );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +151,7 @@ class SignupProcess extends StatelessWidget {
                         const SizedBox(height: 220.0),
                         CustomElevatedButton(
                           buttonText: 'Next',
-                          onPressed: () {},
+                          onPressed: (() => signUp(context)),
                         ),
                       ],
                     ),

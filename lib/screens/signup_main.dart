@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/custom_elevated_button.dart';
-import 'package:solulab1/home_screen.dart';
+import 'package:solulab1/utils/app_text_field.dart';
+import 'package:solulab1/utils/custom_elevated_button.dart';
 import 'package:solulab1/screens/signin.dart';
-import 'package:solulab1/app_text_field.dart';
 import 'package:solulab1/widgets/bgimage.dart';
-import 'package:solulab1/wrapper.dart';
+import 'package:solulab1/screens/signup_process.dart';
 
 class SignupMain extends StatefulWidget {
   const SignupMain({super.key});
@@ -19,7 +17,6 @@ class _SignupMainState extends State<SignupMain> {
   final userIdController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  String? errorMessage = '';
   bool _obscurePassword = true;
   bool keepSignedIn = false;
   bool emailSpecialPricing = false;
@@ -37,34 +34,18 @@ class _SignupMainState extends State<SignupMain> {
     );
   }
 
-  Future<void> createUserWithEmailAndPassword() async {
-    try {
-      // Create user with email and password
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      );
-
-      await userCredential.user!
-          .updateDisplayName(userIdController.text.trim());
-
-      if (mounted) {
-        Navigator.push(
-          context,
-          PageTransition(
-            type: PageTransitionType.rightToLeft,
-            child: const HomeScreen(),
-          ),
-        );
-
-        await saveLoginState(true);
-      }
-    } on FirebaseAuthException catch (e) {
-      setState(() {
-        errorMessage = e.message;
-      });
-    }
+  void navigateToSignupProcess() {
+    Navigator.push(
+      context,
+      PageTransition(
+        type: PageTransitionType.rightToLeft,
+        child: SignupProcess(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+          userId: userIdController.text.trim(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -186,30 +167,10 @@ class _SignupMainState extends State<SignupMain> {
                       ),
                     ),
                     const SizedBox(height: 43.0),
-                    CustomElevatedButton(buttonText: 'Create Account', onPressed: () {
-                        createUserWithEmailAndPassword();
-                      },),
-                    // ElevatedButton(
-                    //   style: ElevatedButton.styleFrom(
-                    //       backgroundColor: const Color(0xFF6B50F6),
-                    //       shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(15.0),
-                    //       ),
-                    //       fixedSize: const Size(175, 57)),
-                    //   onPressed: () {
-                    //     createUserWithEmailAndPassword();
-                    //   },
-                    //   child: const Center(
-                    //     child: Text(
-                    //       'Create Account',
-                    //       style: TextStyle(
-                    //         fontFamily: 'BentonSans_Bold',
-                    //         fontSize: 16,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    CustomElevatedButton(
+                      buttonText: 'Next',
+                      onPressed: navigateToSignupProcess,
+                    ),
                     const SizedBox(height: 14.0),
                     TextButton(
                       onPressed: () {

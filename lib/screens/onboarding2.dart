@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/custom_elevated_button.dart';
+import 'package:solulab1/utils/custom_elevated_button.dart';
 import 'package:solulab1/screens/onboarding3.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 

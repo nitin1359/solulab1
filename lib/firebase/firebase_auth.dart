@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/home_screen.dart';
+import 'package:solulab1/screens/home_screen.dart';
 import 'package:solulab1/wrapper.dart';
 
 class AuthMethods {
@@ -37,7 +37,8 @@ class AuthMethods {
       "email": userDetails!.email,
       "name": userDetails.displayName,
       "imgUrl": userDetails.photoURL,
-      "id": userDetails.uid
+      "id": userDetails.uid,
+      "fcmToken": await firebaseAuth.currentUser!.getIdToken(),
     };
     await DatabaseMethods().addUser(userDetails.uid, userInfoMap).then((value) {
       Navigator.push(
