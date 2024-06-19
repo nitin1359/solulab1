@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ElevatedButton(
                 onPressed: () => signOut(), // Call signOut function
                 child: Text(
-                  'Signout Button',
+                  'Sign Out',
                   style: TextStyle(fontSize: 20),
                 ))
           ],
