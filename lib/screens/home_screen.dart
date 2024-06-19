@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:solulab1/screens/authentication/signin.dart';
 import 'package:solulab1/navigation/wrapper.dart';
 
@@ -16,31 +17,32 @@ class _HomeScreenState extends State<HomeScreen> {
 
   signOut() async {
     try {
-      await GoogleSignIn().signOut(); /*this line is used to signout 
+      await GoogleSignIn()
+          .signOut(); /*this line is used to signout 
       from google account as well, cause without this, next time when 
       someone click on it, it will direct log them using previously selected google id */
-      
+
       await FirebaseAuth.instance.signOut();
       if (mounted) {
         // Check if the widget is still in the widget tree
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => const Signin(),
+          PageTransition(
+            type: PageTransitionType.rightToLeft,
+            child: const Signin(),
           ),
         );
       }
       await saveLoginState(false);
-     
     } catch (e) {
-       if (mounted) { 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Sign out failed. Please try again later.'),
-          backgroundColor: Colors.red,
-        ),
-      );
-    }
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Sign out failed. Please try again later.'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 

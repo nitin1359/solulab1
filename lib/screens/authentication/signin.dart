@@ -39,9 +39,9 @@ class _SigninState extends State<Signin> {
   void signIn() async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-          email: emailController.text.trim(),
-          password: passwordController.text.trim(),
-        )
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+    )
         .then((userCredential) async {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -56,22 +56,24 @@ class _SigninState extends State<Signin> {
         );
       }
       await saveLoginState(true);
-    }).catchError((e) {
-      if (e is FirebaseAuthException) {
-        setState(() {
-          errorMessage = e.message;
-        });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              e.message ?? "An error occurred",
-              style: TextStyle(color: Colors.white),
+    }).catchError(
+      (e) {
+        if (e is FirebaseAuthException) {
+          setState(() {
+            errorMessage = e.message;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(
+                e.message ?? "An error occurred",
+                style: TextStyle(color: Colors.white),
+              ),
+              backgroundColor: Colors.red.shade400,
             ),
-            backgroundColor: Colors.red.shade400,
-          ),
-        );
-      }
-    },);
+          );
+        }
+      },
+    );
   }
 
   @override
@@ -155,7 +157,7 @@ class _SigninState extends State<Signin> {
                           onPressed: () {
                             AuthMethods().signInWithGoogle(context);
                           },
-                          label: const Text( 
+                          label: const Text(
                             'Google',
                             style: TextStyle(
                               fontFamily: 'Bentonsans_Medium',
@@ -195,25 +197,6 @@ class _SigninState extends State<Signin> {
                     const SizedBox(height: 36.0),
                     CustomElevatedButton(
                         buttonText: 'Login', onPressed: signIn),
-                    // ElevatedButton(
-                    //   style: ElevatedButton.styleFrom(
-                    //       backgroundColor: const Color(0xFF6B50F6),
-                    //       shape: RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.circular(15.0),
-                    //       ),
-                    //       fixedSize: const Size(157, 57)),
-                    //   onPressed: (() => signIn()),
-                    //   child: const Center(
-                    //     child: Text(
-                    //       'Login',
-                    //       style: TextStyle(
-                    //         fontFamily: 'BentonSans_Bold',
-                    //         fontSize: 16,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     const SizedBox(height: 14.0),
                     TextButton(
                       onPressed: () {

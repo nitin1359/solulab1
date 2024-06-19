@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:solulab1/firebase_options.dart';
 import 'package:solulab1/screens/home_screen.dart';
 import 'package:solulab1/screens/onboarding/onboarding2.dart';
@@ -8,6 +9,9 @@ import 'package:solulab1/screens/onboarding/onboarding3.dart';
 import 'package:solulab1/screens/authentication/signin.dart';
 import 'package:solulab1/screens/authentication/signup_main.dart';
 import 'package:solulab1/navigation/wrapper.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 
 Future<void> requestNotificationPermissions() async {
   await FirebaseMessaging.instance.requestPermission(
@@ -23,10 +27,21 @@ Future<void> requestNotificationPermissions() async {
 
 @pragma('vm:entry-point') // Necessary for background message handling on iOS
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  // This function is called when the app receives a message in the background.
-  // You can handle the message here, e.g., show a notification or update data.
-  print('Handling a background message: ${message.messageId}');
-  print('Message data: ${message.data}');
+  // Display the notification using flutter_local_notifications
+  flutterLocalNotificationsPlugin.show(
+    message.hashCode, // Unique notification ID
+    message.notification?.title ?? 'Notification Title',
+    message.notification?.body ?? 'Notification Body',
+    NotificationDetails(
+      android: AndroidNotificationDetails(
+        'your_channel_id', // Replace with your channel ID
+        'your_channel_name', // Replace with your channel name
+        importance: Importance.max,
+        priority: Priority.high,
+      ),
+      // Add iOS details if needed
+    ),
+  );
 }
 
 void main() async {
@@ -34,6 +49,14 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  const AndroidInitializationSettings initializationSettingsAndroid =
+      AndroidInitializationSettings('@mipmap/ic_launcher'); // Use your app icon
+  final InitializationSettings initializationSettings = InitializationSettings(
+    android: initializationSettingsAndroid,
+    iOS: null, // Add iOS settings if needed
+  );
+  await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+
   await requestNotificationPermissions();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
   runApp(const MyApp());
