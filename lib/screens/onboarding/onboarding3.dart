@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:solulab1/utils/custom_elevated_button.dart';
-import 'package:solulab1/screens/onboarding3.dart';
+import 'package:solulab1/screens/authentication/signup_main.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
-class OnBoarding2 extends StatelessWidget {
-  const OnBoarding2({super.key});
+class OnBoarding3 extends StatelessWidget {
+  const OnBoarding3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,36 +18,34 @@ class OnBoarding2 extends StatelessWidget {
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.only(top: 107.0),
+                    padding: EdgeInsets.only(top: 123.0),
                     child: Image(
                       image: AssetImage(
-                        'assets/images/Group 1911.png',
+                        'assets/images/Group 1912.png',
                       ),
-                      height: 398.0,
+                      height: 370.0,
                       width: double.infinity,
                     ),
                   ),
-                  const SizedBox(height: 48.0),
+                  const SizedBox(height: 66.0),
                   const Text(
-                    'Find your Comfort\nFood here',
+                    'DIDFOOD is Where Your\nComfort Food Lives',
                     style: TextStyle(
                       fontFamily: 'Bentonsans_Bold',
                       fontSize: 22.0,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  const SizedBox(height: 20.0),
                   const Text(
-                    'Here You Can find a chef or dish for every\ntaste and color. Enjoy!',
+                    'Enjoy a fast and smooth food delivery at\nyour doorstep',
                     style: TextStyle(
                       fontFamily: 'Bentonsans_Book',
-                      fontSize: 12.0,
+                      fontSize: 12,
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 48.0),
+                  const SizedBox(height: 42.0),
                   CustomElevatedButton(
                     buttonText: 'Next',
                     onPressed: () {
@@ -55,7 +53,7 @@ class OnBoarding2 extends StatelessWidget {
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
-                          child: const OnBoarding3(),
+                          child: const SignupMain(),
                         ),
                       );
                     },

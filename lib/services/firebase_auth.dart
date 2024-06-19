@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:solulab1/screens/home_screen.dart';
-import 'package:solulab1/wrapper.dart';
+import 'package:solulab1/navigation/wrapper.dart';
 
 class AuthMethods {
   final FirebaseAuth auth = FirebaseAuth.instance;

@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:solulab1/utils/custom_elevated_button.dart';
-import 'package:solulab1/firebase/firebase_auth.dart';
+import 'package:solulab1/services/firebase_auth.dart';
 import 'package:solulab1/screens/home_screen.dart';
-import 'package:solulab1/screens/signup_main.dart';
+import 'package:solulab1/screens/authentication/signup_main.dart';
 import 'package:solulab1/utils/app_text_field.dart';
 import 'package:solulab1/widgets/bgimage.dart';
-import 'package:solulab1/wrapper.dart';
+import 'package:solulab1/navigation/wrapper.dart';
 
 class Signin extends StatefulWidget {
   const Signin({super.key});

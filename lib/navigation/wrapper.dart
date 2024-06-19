@@ -2,7 +2,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:solulab1/screens/home_screen.dart';
-import 'package:solulab1/screens/onboarding1.dart';
+import 'package:solulab1/screens/onboarding/onboarding1.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({super.key});

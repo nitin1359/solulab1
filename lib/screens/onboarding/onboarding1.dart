@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:solulab1/screens/onboarding2.dart';
+import 'package:solulab1/screens/onboarding/onboarding2.dart';
 import 'package:solulab1/widgets/bgimage.dart';
 
 class OnBoarding1 extends StatelessWidget {

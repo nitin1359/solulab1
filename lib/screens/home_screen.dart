@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:solulab1/screens/signin.dart';
-import 'package:solulab1/wrapper.dart';
+import 'package:solulab1/screens/authentication/signin.dart';
+import 'package:solulab1/navigation/wrapper.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

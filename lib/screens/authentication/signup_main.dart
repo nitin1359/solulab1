@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:solulab1/utils/app_text_field.dart';
 import 'package:solulab1/utils/custom_elevated_button.dart';
-import 'package:solulab1/screens/signin.dart';
+import 'package:solulab1/screens/authentication/signin.dart';
 import 'package:solulab1/widgets/bgimage.dart';
-import 'package:solulab1/screens/signup_process.dart';
+import 'package:solulab1/screens/authentication/signup_process.dart';
 
 class SignupMain extends StatefulWidget {
   const SignupMain({super.key});
