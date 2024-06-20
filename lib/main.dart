@@ -50,6 +50,7 @@ NotificationServices notificationServices = NotificationServices();
     
     super.initState();
     notificationServices .requestNotificationPermission();
+    notificationServices.foregroundMessage();
     // notificationServices .isTokenRefresh();
     notificationServices .firebaseInit(context);
     notificationServices .getDeviceToken().then((value){

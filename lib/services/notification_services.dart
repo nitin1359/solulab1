@@ -42,19 +42,26 @@ class NotificationServices {
     );
     await _flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
-      onDidReceiveNotificationResponse: (payload) async {},
+      onDidReceiveNotificationResponse: (payload) async {
+        handleMessage(context, message);
+      },
     );
   }
 
   void firebaseInit(BuildContext context) {
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print(message.notification!.title.toString());
-      print(message.notification!.body.toString());
-      if (Platform.isAndroid) {
-        initLocalNotifications(context, message);
-        showNotification(message);
-      }
-    });
+    FirebaseMessaging.onMessage.listen(
+      (RemoteMessage message) {
+        print(message.notification!.title.toString());
+        print(message.notification!.body.toString());
+        if (Platform.isIOS) {
+          foregroundMessage();
+        }
+        if (Platform.isAndroid) {
+          initLocalNotifications(context, message);
+          showNotification(message);
+        }
+      },
+    );
   }
 
   Future<void> showNotification(RemoteMessage message) async {
@@ -114,6 +121,18 @@ class NotificationServices {
   }
 
   void handleMessage(BuildContext context, RemoteMessage message) {
-    
+    if (message.data['1'] == '1') {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MessageScreen()));
+    }
+  }
+
+  Future foregroundMessage() async {
+    await FirebaseMessaging.instance
+        .setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
   }
 }
