@@ -1,9 +1,11 @@
 // ignore_for_file: avoid_print
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:http/http.dart' as http;
 import 'package:solulab1/services/message_screen.dart';
 
 class NotificationServices {
@@ -71,10 +73,17 @@ class NotificationServices {
       importance: Importance.max,
     );
 
+    final http.Response response = await http.get(Uri.parse("https://goodfavorites.com/wp-content/uploads/2020/02/candy-birthday-cakes-lovely-just-jenny-lynne-happy-national-cake-day-of-candy-birthday-cakes.jpg"));
+    BigPictureStyleInformation bigPictureStyleInformation =
+        BigPictureStyleInformation(
+      ByteArrayAndroidBitmap.fromBase64String(base64Encode(response.bodyBytes)),
+      largeIcon: ByteArrayAndroidBitmap.fromBase64String(base64Encode(response.bodyBytes)),
+    );
     AndroidNotificationDetails androidNotificationDetails =
         AndroidNotificationDetails(
       channel.id,
-      channel.name,
+      channel.name, 
+      styleInformation:  bigPictureStyleInformation,
       importance: Importance.high,
       priority: Priority.high,
       ticker: 'ticker',
