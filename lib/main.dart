@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:solulab1/firebase_options.dart';
+import 'package:solulab1/screens/Assignment2/homepage.dart';
 import 'package:solulab1/screens/home_screen.dart';
 import 'package:solulab1/screens/onboarding/onboarding2.dart';
 import 'package:solulab1/screens/onboarding/onboarding3.dart';
@@ -16,7 +18,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  // For Persistence Firebase Firestore Database
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+  );
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   runApp(const MyApp());
@@ -62,7 +67,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Wrapper(),
+      home: Homepage(),
       routes: {
         '/onboarding2': (context) => const OnBoarding2(),
         '/onboarding3': (context) => const OnBoarding3(),

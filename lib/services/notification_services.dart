@@ -12,7 +12,7 @@ class NotificationServices {
 
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
       FlutterLocalNotificationsPlugin();
-
+  
   Future<String> getDeviceToken() async {
     String? token = await messaging.getToken();
     return token!;
@@ -113,7 +113,6 @@ class NotificationServices {
     final http.Response? response =
         imageUrl != null ? await http.get(Uri.parse(imageUrl)) : null;
     final byteArray = response?.bodyBytes;
-
     BigPictureStyleInformation bigPictureStyleInformation =
         BigPictureStyleInformation(
       ByteArrayAndroidBitmap.fromBase64String(base64Encode(byteArray!)),
