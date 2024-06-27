@@ -4,7 +4,6 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:solulab1/firebase_options.dart';
-import 'package:solulab1/screens/Assignment2/homepage.dart';
 import 'package:solulab1/screens/home_screen.dart';
 import 'package:solulab1/screens/onboarding/onboarding2.dart';
 import 'package:solulab1/screens/onboarding/onboarding3.dart';
@@ -67,7 +66,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Homepage(),
+      home: Wrapper(),
       routes: {
         '/onboarding2': (context) => const OnBoarding2(),
         '/onboarding3': (context) => const OnBoarding3(),

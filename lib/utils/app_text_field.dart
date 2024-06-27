@@ -50,22 +50,3 @@ class AppTextField extends StatelessWidget {
 }
 
 // ignore: must_be_immutable
-Widget assign2TextField({
-  required String text,
-  required String fontFamily,
-  required double fontSize,
-  Color? color,
-}) {
-  return SizedBox(
-    width: 233.0,
-    height: 82.0,
-    child: Text(
-      text,
-      style: TextStyle(
-        fontFamily: fontFamily,
-        fontSize: fontSize,
-        color: color,
-      ),
-    ),
-  );
-}
